@@ -62,7 +62,6 @@
   --color-on-error-container: #ffdad6;
   
   /* Typography */
-  --font-inter: var(--font-inter);
   --font-jetbrains: var(--font-jetbrains-mono);
   
   --font-display-hero: var(--font-inter);
