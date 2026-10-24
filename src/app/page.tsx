@@ -75,10 +75,10 @@ export default async function Home() {
             </div>
             <div className="flex flex-col">
               <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-surface uppercase">
-                Apex Sales
+                La Virginia
               </span>
               <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-on-surface-variant uppercase">
-                Command Suite
+                Gestión Comercial
               </span>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default async function Home() {
             <div className="flex items-center gap-[1.25rem]">
               <div className="flex items-baseline gap-[0.25rem]">
                 <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.01em] text-on-surface">
-                  Apex Sales
+                  La Virginia
                 </span>
                 <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.01em] text-outline-variant">
                   /

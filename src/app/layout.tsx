@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ranking General de Vendedores | Apex Sales",
+  title: "Ranking General de Vendedores | La Virginia",
   description: "Métricas consolidadas de productividad comercial, efectividad de cobranza y cumplimiento de cuotas mensuales.",
 };
 
