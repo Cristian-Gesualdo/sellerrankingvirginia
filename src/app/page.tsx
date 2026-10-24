@@ -1,24 +1,4 @@
-import { supabase } from "@/lib/supabase";
-import { Vendedor } from "@/types";
-
-async function getVendedores(): Promise<Vendedor[]> {
-  try {
-    const { data, error } = await supabase
-      .from("vendedores")
-      .select("*")
-      .order("posicion_general", { ascending: true });
-
-    if (error) {
-      console.error("Error fetching vendedores:", error);
-      return [];
-    }
-
-    return data || [];
-  } catch (err) {
-    console.error("Error:", err);
-    return [];
-  }
-}
+import { getRanking } from "@/lib/vendedores-csv";
 
 function getTrendIcon(tendencia?: string) {
   if (tendencia?.startsWith("+")) {
@@ -53,7 +33,7 @@ function getScoreBadgeClass(puntaje: number) {
 }
 
 export default async function Home() {
-  const vendedores = await getVendedores();
+  const { vendedores, periodoLabel, cumplimientoKilos } = await getRanking();
   const top3 = vendedores.slice(0, 3);
   const tableData = vendedores.slice(0, 10);
 
@@ -62,7 +42,7 @@ export default async function Home() {
       ? (vendedores.reduce((sum, v) => sum + v.puntaje, 0) / vendedores.length).toFixed(1)
       : "0.0";
   const enObjetivo = vendedores.filter((v) => v.puntaje >= 70).length;
-  const metaGlobal = "102.3%";
+  const metaGlobal = `${cumplimientoKilos}%`;
 
   return (
     <div className="flex">
@@ -172,7 +152,7 @@ export default async function Home() {
               <div className="hidden xl:flex items-center gap-[0.25rem] px-[0.75rem] py-[0.25rem] rounded-full bg-surface-container text-primary">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
                 <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] uppercase">
-                  Octubre 2024 · En Vivo · {vendedores.length} Vendedores
+                  {periodoLabel} · {vendedores.length} Vendedores
                 </span>
               </div>
             </div>
@@ -286,7 +266,7 @@ export default async function Home() {
                     Todavía no hay vendedores cargados
                   </p>
                   <p className="max-w-md text-[13px] leading-[20px] text-on-surface-variant text-pretty">
-                    La tabla <span className="font-jetbrains">vendedores</span> en Supabase está vacía. Cuando cargues los datos del período, el podio y el ranking aparecerán acá automáticamente.
+                    El archivo CSV de vendedores no tiene filas para el período actual.
                   </p>
                 </div>
               )}
@@ -543,7 +523,7 @@ export default async function Home() {
                   <div className="flex flex-wrap items-center gap-[0.5rem]">
                     <div className="flex items-center gap-[0.25rem] px-[0.75rem] py-2 rounded-lg bg-surface text-on-surface shadow-sm cursor-pointer hover:bg-surface-variant transition-colors">
                       <span className="material-symbols-outlined text-outline text-[18px]">calendar_today</span>
-                      <span className="text-[13px] font-normal leading-[18px]">Octubre 2024 (Mes Actual)</span>
+                      <span className="text-[13px] font-normal leading-[18px]">{periodoLabel} (Mes Actual)</span>
                       <span className="material-symbols-outlined text-outline text-[16px]">expand_more</span>
                     </div>
                     <div className="flex items-center gap-[0.25rem] px-[0.75rem] py-2 rounded-lg bg-surface text-on-surface shadow-sm cursor-pointer hover:bg-surface-variant transition-colors">
