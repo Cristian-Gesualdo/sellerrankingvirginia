@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/stitch_sales_leaderboard_dashboard
 .pnp.*
 .yarn/*
 !.yarn/patches
