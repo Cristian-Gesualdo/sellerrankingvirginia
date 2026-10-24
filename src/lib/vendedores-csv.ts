@@ -83,14 +83,26 @@ export interface RankingData {
   cumplimientoKilos: number;
 }
 
+function labelDe(periodo: string) {
+  const [anio, mes] = periodo.split("-");
+  return mes ? `${MESES[Number(mes) - 1]} ${anio}` : periodo;
+}
+
 export const getRanking = cache(async (): Promise<RankingData> => {
+  const periodos = await getRankingPorPeriodo();
+  return periodos[0] ?? { vendedores: [], periodo: "", periodoLabel: "", cumplimientoKilos: 0 };
+});
+
+export const getRankingPorPeriodo = cache(async (): Promise<RankingData[]> => {
   const text = await readFile(CSV_PATH, "utf8");
   const rows = parseCsv(text);
-
   const meses = [...new Set(rows.map((r) => r.Mes))].sort();
-  const periodo = meses.at(-1) ?? "";
-  const periodoAnterior = meses.at(-2);
+  return meses
+    .map((periodo, idx) => buildPeriodo(rows, periodo, meses[idx - 1]))
+    .reverse();
+});
 
+function buildPeriodo(rows: Row[], periodo: string, periodoAnterior?: string): RankingData {
   const puntajeDe = (r: Row) =>
     calcularPuntaje({
       vta: toNumber(r.KPI_Venta_vs_OV),
@@ -125,6 +137,7 @@ export const getRanking = cache(async (): Promise<RankingData> => {
         prod: toNumber(r.KPI_Productividad),
         no_comp: toNumber(r.KPI_No_Compradores),
         lanzamientos: toNumber(r.KPI_Ult_Lanzamientos),
+        no_entregados: toNumber(r.KPI_No_Entregados),
         cobranza: toNumber(r.KPI_Cobranzas),
         relevamiento: toNumber(r.KPI_Relevamientos),
         posicion_sucursal: 0,
@@ -146,13 +159,10 @@ export const getRanking = cache(async (): Promise<RankingData> => {
   const objetivo = actuales.reduce((s, r) => s + toNumber(r.Kilos_Objetivo), 0);
   const vendidos = actuales.reduce((s, r) => s + toNumber(r.Kilos_Vendidos), 0);
 
-  const [anio, mes] = periodo.split("-");
-  const periodoLabel = mes ? `${MESES[Number(mes) - 1]} ${anio}` : periodo;
-
   return {
     vendedores,
     periodo,
-    periodoLabel,
+    periodoLabel: labelDe(periodo),
     cumplimientoKilos: objetivo > 0 ? round1((vendidos / objetivo) * 100) : 0,
   };
-});
+}
