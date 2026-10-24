@@ -11,6 +11,7 @@ export interface Vendedor {
   prod: number;
   no_comp: number;
   lanzamientos: number;
+  no_entregados?: number;
   cobranza: number;
   relevamiento: number;
   posicion_sucursal: number;
