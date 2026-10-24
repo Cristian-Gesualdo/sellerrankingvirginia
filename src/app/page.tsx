@@ -276,6 +276,20 @@ export default async function Home() {
             </div>
 
             <div className="p-[1.75rem] flex flex-col gap-[1.75rem]">
+              {vendedores.length === 0 && (
+                <div
+                  role="status"
+                  className="flex flex-col items-center justify-center gap-[0.5rem] rounded-2xl bg-surface-container-low px-[1.25rem] py-[2.5rem] text-center"
+                >
+                  <span className="material-symbols-outlined text-outline text-[32px]">database</span>
+                  <p className="text-[15px] font-semibold leading-[22px] text-on-surface">
+                    Todavía no hay vendedores cargados
+                  </p>
+                  <p className="max-w-md text-[13px] leading-[20px] text-on-surface-variant text-pretty">
+                    La tabla <span className="font-jetbrains">vendedores</span> en Supabase está vacía. Cuando cargues los datos del período, el podio y el ranking aparecerán acá automáticamente.
+                  </p>
+                </div>
+              )}
               {/* Podio */}
               <section className="flex flex-col gap-[0.75rem]">
                 <div className="flex items-center justify-between">
