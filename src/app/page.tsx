@@ -3,7 +3,7 @@ import { getRanking } from "@/lib/vendedores-csv";
 function getTrendIcon(tendencia?: string) {
   if (tendencia?.startsWith("+")) {
     return (
-      <span className="inline-flex items-center text-primary font-mono text-[12px] font-normal leading-[16px]">
+      <span className="inline-flex items-center text-success font-mono text-[12px] font-normal leading-[16px]">
         ▲ {tendencia}
       </span>
     );
@@ -27,9 +27,9 @@ function getScoreBadgeClass(puntaje: number) {
     return "bg-primary/15 text-primary";
   }
   if (puntaje >= 70) {
-    return "bg-secondary/20 text-secondary";
+    return "bg-warning/15 text-warning";
   }
-  return "bg-error-container/40 text-error";
+  return "bg-error/10 text-error";
 }
 
 export default async function Home() {
@@ -47,70 +47,70 @@ export default async function Home() {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between py-[1.25rem]">
+      <aside className="fixed left-0 top-0 h-full w-64 bg-primary z-50 flex flex-col justify-between py-[1.25rem]">
         <div className="flex flex-col gap-[1.75rem]">
           <div className="px-[1.25rem] flex items-center gap-[0.5rem]">
-            <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+            <div className="w-8 h-8 rounded-lg bg-on-primary/15 flex items-center justify-center text-secondary">
               <span className="material-symbols-outlined text-[20px]">query_stats</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-surface uppercase">
+              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-primary uppercase">
                 La Virginia
               </span>
-              <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-on-surface-variant uppercase">
+              <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-on-primary/70 uppercase">
                 Gestión Comercial
               </span>
             </div>
           </div>
           <nav className="flex flex-col gap-[0.25rem] px-[0.75rem]">
             <div className="px-[0.75rem] py-[0.25rem]">
-              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-surface-variant uppercase">
+              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-primary/70 uppercase">
                 Análisis Comercial
               </span>
             </div>
             <a
               aria-current="page"
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg transition-colors bg-primary-container text-on-primary-container font-semibold"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg transition-colors bg-secondary text-on-secondary font-semibold"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">leaderboard</span>
               <span className="text-[13px] font-medium leading-[18px]">Ranking General</span>
             </a>
             <a
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-primary/70 hover:bg-on-primary/10 hover:text-on-primary transition-colors"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">target</span>
               <span className="text-[13px] font-normal leading-[18px]">Cuotas y Objetivos</span>
             </a>
             <a
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-primary/70 hover:bg-on-primary/10 hover:text-on-primary transition-colors"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">public</span>
               <span className="text-[13px] font-normal leading-[18px]">Rendimiento Regional</span>
             </a>
             <a
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-primary/70 hover:bg-on-primary/10 hover:text-on-primary transition-colors"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">monitoring</span>
               <span className="text-[13px] font-normal leading-[18px]">Telemetría Vendedores</span>
             </a>
             <div className="mt-[0.75rem] px-[0.75rem] py-[0.25rem]">
-              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-surface-variant uppercase">
+              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-primary/70 uppercase">
                 Estrategia
               </span>
             </div>
             <a
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-primary/70 hover:bg-on-primary/10 hover:text-on-primary transition-colors"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">warning</span>
               <span className="text-[13px] font-normal leading-[18px]">Pipeline & Riesgos</span>
             </a>
             <a
-              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+              className="flex items-center gap-[0.75rem] px-[0.75rem] py-[0.5rem] rounded-lg text-on-primary/70 hover:bg-on-primary/10 hover:text-on-primary transition-colors"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">payments</span>
@@ -119,14 +119,14 @@ export default async function Home() {
           </nav>
         </div>
         <div className="px-[0.75rem]">
-          <div className="p-[0.75rem] rounded-lg bg-surface-container-low flex flex-col gap-[0.25rem]">
+          <div className="p-[0.75rem] rounded-lg bg-on-primary/10 flex flex-col gap-[0.25rem]">
             <div className="flex items-center justify-between">
-              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-surface-variant uppercase">
+              <span className="font-jetbrains text-[10px] font-semibold leading-[14px] tracking-[0.12em] text-on-primary/70 uppercase">
                 Sync Engine
               </span>
-              <span className="w-2 h-2 rounded-full bg-primary"></span>
+              <span className="w-2 h-2 rounded-full bg-success"></span>
             </div>
-            <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-on-surface">
+            <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-on-primary">
               Latency 14ms · CRM Sync OK
             </span>
           </div>
@@ -169,7 +169,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="flex items-center gap-[0.75rem]">
-              <button className="flex items-center gap-[0.25rem] px-[0.75rem] py-[0.25rem] rounded-lg bg-primary-container text-on-primary-container transition-opacity hover:opacity-90">
+              <button className="flex items-center gap-[0.25rem] px-[0.75rem] py-[0.25rem] rounded-lg bg-secondary text-on-secondary font-semibold transition-opacity hover:opacity-90">
                 <span className="material-symbols-outlined text-[18px]">download</span>
                 <span className="text-[13px] font-medium leading-[18px]">Exportar Reporte</span>
               </button>
@@ -247,7 +247,7 @@ export default async function Home() {
                     <span className="material-symbols-outlined text-[18px]">cloud_download</span>
                     <span className="text-[13px] font-normal leading-[18px]">Comparar Períodos</span>
                   </button>
-                  <button className="flex items-center gap-[0.25rem] px-[0.75rem] py-[0.5rem] rounded-lg bg-primary-container text-on-primary-container hover:opacity-90 transition-opacity shadow-sm">
+                  <button className="flex items-center gap-[0.25rem] px-[0.75rem] py-[0.5rem] rounded-lg bg-secondary text-on-secondary hover:opacity-90 transition-opacity shadow-sm">
                     <span className="material-symbols-outlined text-[18px]">table_view</span>
                     <span className="text-[13px] font-semibold leading-[18px]">Descargar Excel/CSV</span>
                   </button>
@@ -292,15 +292,15 @@ export default async function Home() {
                           key={v.id}
                           className="relative rounded-2xl bg-surface-container-low p-[1.25rem] flex flex-col justify-between overflow-hidden shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
                           style={{
-                            boxShadow: "0 0 20px -2px rgba(75, 226, 119, 0.28), inset 0 0 16px -4px rgba(75, 226, 119, 0.15)",
-                            outline: "1.5px solid #4be277",
+                            boxShadow: "0 0 20px -2px rgba(0, 85, 165, 0.25), inset 0 0 16px -4px rgba(0, 85, 165, 0.08)",
+                            outline: "1.5px solid #0055a5",
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none"></div>
                           <div className="relative z-10 flex flex-col">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col">
-                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-white">
+                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-on-surface">
                                   {v.puntaje}
                                 </span>
                                 <span className="font-jetbrains text-[9px] font-semibold leading-[12px] tracking-[0.08em] text-on-surface-variant uppercase mt-1">
@@ -313,7 +313,7 @@ export default async function Home() {
                               </div>
                             </div>
                             <div className="mt-[0.75rem]">
-                              <h2 className="text-[15px] font-bold leading-[22px] text-white">
+                              <h2 className="text-[15px] font-bold leading-[22px] text-on-surface">
                                 {v.nombre} {v.apellido?.charAt(0)}.
                               </h2>
                               <p className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">
@@ -323,31 +323,31 @@ export default async function Home() {
                             <div className="my-[0.75rem] h-px w-full bg-surface-container-highest"></div>
                             <div className="grid grid-cols-2 gap-y-[0.5rem] gap-x-[0.75rem]">
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.vta_ov}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.vta_ov}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">VTA/OV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.prod}</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.prod}</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">PROD</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.no_comp}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.no_comp}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">NO COMP</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.lanzamientos}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.lanzamientos}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">LANZ</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">1%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">1%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">NO ENTR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.cobranza}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.cobranza}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">COBR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.relevamiento}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.relevamiento}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">RELEV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
@@ -364,15 +364,15 @@ export default async function Home() {
                           key={v.id}
                           className="relative rounded-2xl bg-surface-container-low p-[1.25rem] flex flex-col justify-between overflow-hidden shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
                           style={{
-                            boxShadow: "0 0 20px -2px rgba(255, 202, 69, 0.28), inset 0 0 16px -4px rgba(255, 202, 69, 0.15)",
-                            outline: "1.5px solid #ffca45",
+                            boxShadow: "0 0 20px -2px rgba(255, 215, 0, 0.35), inset 0 0 16px -4px rgba(255, 215, 0, 0.12)",
+                            outline: "1.5px solid #ffd700",
                           }}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-transparent to-transparent pointer-events-none"></div>
+                          <div className="absolute inset-0 bg-gradient-to-b from-secondary/15 via-transparent to-transparent pointer-events-none"></div>
                           <div className="relative z-10 flex flex-col">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col">
-                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-white">
+                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-on-surface">
                                   {v.puntaje}
                                 </span>
                                 <span className="font-jetbrains text-[9px] font-semibold leading-[12px] tracking-[0.08em] text-on-surface-variant uppercase mt-1">
@@ -385,7 +385,7 @@ export default async function Home() {
                               </div>
                             </div>
                             <div className="mt-[0.75rem]">
-                              <h2 className="text-[15px] font-bold leading-[22px] text-white">
+                              <h2 className="text-[15px] font-bold leading-[22px] text-on-surface">
                                 {v.nombre} {v.apellido?.charAt(0)}.
                               </h2>
                               <p className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">
@@ -395,15 +395,15 @@ export default async function Home() {
                             <div className="my-[0.75rem] h-px w-full bg-surface-container-highest"></div>
                             <div className="grid grid-cols-2 gap-y-[0.5rem] gap-x-[0.75rem]">
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.vta_ov}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.vta_ov}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">VTA/OV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.prod}</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.prod}</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">PROD</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.no_comp}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.no_comp}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">NO COMP</span>
                               </div>
                               <div className="flex items-baseline justify-between">
@@ -411,19 +411,19 @@ export default async function Home() {
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">LANZ</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">2%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">2%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">NO ENTR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.cobranza}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.cobranza}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">COBR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.relevamiento}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.relevamiento}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">RELEV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-secondary">#{v.posicion_sucursal}</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-warning">#{v.posicion_sucursal}</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">EN SUC</span>
                               </div>
                             </div>
@@ -436,15 +436,15 @@ export default async function Home() {
                           key={v.id}
                           className="relative rounded-2xl bg-surface-container-low p-[1.25rem] flex flex-col justify-between overflow-hidden shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
                           style={{
-                            boxShadow: "0 0 20px -2px rgba(255, 180, 171, 0.28), inset 0 0 16px -4px rgba(255, 180, 171, 0.15)",
-                            outline: "1.5px solid #ffb4ae",
+                            boxShadow: "0 0 20px -2px rgba(239, 68, 68, 0.22), inset 0 0 16px -4px rgba(239, 68, 68, 0.08)",
+                            outline: "1.5px solid #ef4444",
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-b from-error-container/20 via-transparent to-transparent pointer-events-none"></div>
                           <div className="relative z-10 flex flex-col">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col">
-                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-white">
+                                <span className="text-[38px] font-bold leading-[42px] tracking-[-0.02em] text-on-surface">
                                   {v.puntaje}
                                 </span>
                                 <span className="font-jetbrains text-[9px] font-semibold leading-[12px] tracking-[0.08em] text-on-surface-variant uppercase mt-1">
@@ -457,7 +457,7 @@ export default async function Home() {
                               </div>
                             </div>
                             <div className="mt-[0.75rem]">
-                              <h2 className="text-[15px] font-bold leading-[22px] text-white">
+                              <h2 className="text-[15px] font-bold leading-[22px] text-on-surface">
                                 {v.nombre} {v.apellido?.charAt(0)}.
                               </h2>
                               <p className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">
@@ -467,11 +467,11 @@ export default async function Home() {
                             <div className="my-[0.75rem] h-px w-full bg-surface-container-highest"></div>
                             <div className="grid grid-cols-2 gap-y-[0.5rem] gap-x-[0.75rem]">
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.vta_ov}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.vta_ov}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">VTA/OV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.prod}</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.prod}</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">PROD</span>
                               </div>
                               <div className="flex items-baseline justify-between">
@@ -483,7 +483,7 @@ export default async function Home() {
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">LANZ</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">3%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">3%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">NO ENTR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
@@ -491,7 +491,7 @@ export default async function Home() {
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">COBR</span>
                               </div>
                               <div className="flex items-baseline justify-between">
-                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-white">{v.relevamiento}%</span>
+                                <span className="font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">{v.relevamiento}%</span>
                                 <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">RELEV</span>
                               </div>
                               <div className="flex items-baseline justify-between">
@@ -623,8 +623,8 @@ export default async function Home() {
                         const posBadgeClass = isTop
                           ? "bg-primary/20 text-primary"
                           : isMid
-                          ? "bg-secondary/15 text-secondary"
-                          : "bg-error-container/30 text-error";
+                          ? "bg-warning/15 text-warning"
+                          : "bg-error/10 text-error";
                         const scoreBadge = getScoreBadgeClass(v.puntaje);
 
                         return (
@@ -641,7 +641,7 @@ export default async function Home() {
                                   {initials}
                                 </div>
                                 <div className="flex flex-col">
-                                  <span className="text-[15px] font-bold leading-[22px] text-white">
+                                  <span className="text-[15px] font-bold leading-[22px] text-on-surface">
                                     {v.nombre} {v.apellido}
                                   </span>
                                   <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-outline uppercase">
@@ -660,25 +660,25 @@ export default async function Home() {
                                 {v.puntaje} PTS
                               </span>
                             </td>
-                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               {v.vta_ov}%
                             </td>
-                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               {v.prod}
                             </td>
                             <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-normal leading-[16px] text-on-surface-variant">
                               {v.no_comp}%
                             </td>
-                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               {v.lanzamientos}%
                             </td>
-                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               {v.cobranza}%
                             </td>
-                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-right font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               {v.relevamiento}%
                             </td>
-                            <td className="px-[0.75rem] text-center font-jetbrains text-[13px] font-bold leading-[16px] text-white">
+                            <td className="px-[0.75rem] text-center font-jetbrains text-[13px] font-bold leading-[16px] text-on-surface">
                               #{v.posicion_sucursal}
                             </td>
                             <td className="px-[0.75rem] text-center">
@@ -695,35 +695,35 @@ export default async function Home() {
                 <div className="px-[1.25rem] py-[0.75rem] bg-surface-container flex flex-col md:flex-row items-center justify-between gap-[0.75rem]">
                   <div className="flex items-center gap-[1.25rem]">
                     <span className="text-[13px] font-normal leading-[18px] text-on-surface-variant">
-                      Mostrando <span className="text-white font-jetbrains text-[13px] font-bold leading-[16px]">1-10</span> de{" "}
-                      <span className="text-white font-jetbrains text-[13px] font-bold leading-[16px]">{vendedores.length}</span> vendedores clasificados
+                      Mostrando <span className="text-on-surface font-jetbrains text-[13px] font-bold leading-[16px]">1-10</span> de{" "}
+                      <span className="text-on-surface font-jetbrains text-[13px] font-bold leading-[16px]">{vendedores.length}</span> vendedores clasificados
                     </span>
                     <div className="flex items-center gap-[0.25rem] text-on-surface-variant">
                       <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] uppercase">Filas por página:</span>
-                      <div className="px-2 py-0.5 rounded bg-surface text-white font-jetbrains text-[13px] font-bold leading-[16px] flex items-center gap-1 cursor-pointer">
+                      <div className="px-2 py-0.5 rounded bg-surface text-on-surface font-jetbrains text-[13px] font-bold leading-[16px] flex items-center gap-1 cursor-pointer">
                         <span>10</span>
                         <span className="material-symbols-outlined text-[14px]">expand_more</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-outline hover:text-white hover:bg-surface-variant transition-colors disabled:opacity-40" disabled>
+                    <button className="w-8 h-8 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-variant transition-colors disabled:opacity-40" disabled>
                       <span className="material-symbols-outlined text-[18px]">chevron_left</span>
                     </button>
                     <button className="w-8 h-8 rounded bg-primary text-on-primary font-jetbrains text-[13px] font-bold leading-[16px] flex items-center justify-center shadow-sm">
                       1
                     </button>
-                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-white hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
+                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
                       2
                     </button>
-                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-white hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
+                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
                       3
                     </button>
                     <span className="px-2 text-outline font-jetbrains text-[9px] font-normal leading-[12px]">...</span>
-                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-white hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
+                    <button className="w-8 h-8 rounded bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant font-jetbrains text-[12px] font-normal leading-[16px] flex items-center justify-center transition-colors">
                       14
                     </button>
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-on-surface hover:text-white hover:bg-surface-variant transition-colors">
+                    <button className="w-8 h-8 rounded flex items-center justify-center text-on-surface hover:text-on-surface hover:bg-surface-variant transition-colors">
                       <span className="material-symbols-outlined text-[18px]">chevron_right</span>
                     </button>
                   </div>
