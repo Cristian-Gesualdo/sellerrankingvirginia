@@ -249,7 +249,7 @@ export default async function Home() {
                       En Objetivo
                     </span>
                     <span className="font-jetbrains text-[13px] font-bold leading-[16px] tracking-[-0.01em] text-on-surface">
-                      {enObjetivo} <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-primary">({Math.round((enObjetivo / vendedores.length) * 100)}%)</span>
+                      {enObjetivo} <span className="font-jetbrains text-[9px] font-normal leading-[12px] tracking-[0.08em] text-primary">({vendedores.length > 0 ? Math.round((enObjetivo / vendedores.length) * 100) : 0}%)</span>
                     </span>
                   </div>
                   <div className="w-px h-6 bg-surface-variant"></div>
